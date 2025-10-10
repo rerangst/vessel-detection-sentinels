@@ -19,7 +19,8 @@ def retrieve(images, tmp_dir, download_dir, workers=0):
     api = SentinelAPI(
         os.environ.get("COPERNICUS_USERNAME"),
         os.environ.get("COPERNICUS_PASSWORD"),
-        "https://scihub.copernicus.eu/dhus",
+        # "https://scihub.copernicus.eu/dhus",
+        "https://apihub.copernicus.eu/apihub",
         timeout=60,
     )
 
