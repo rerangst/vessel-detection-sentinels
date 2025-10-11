@@ -16,15 +16,21 @@ RUN apt-get update -y && \
     apt-get install -y software-properties-common ffmpeg libsm6 libxext6 libhdf5-serial-dev netcdf-bin libnetcdf-dev && \
     add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
     apt-get update && \
-    apt-get install -y curl build-essential gdal-bin libgdal-dev libpq-dev python3-gdal python3-pip apt-transport-https ca-certificates gnupg && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y \
+        curl build-essential pkg-config python3-dev \
+        gdal-bin libgdal-dev python3-gdal \
+        proj-bin libproj-dev \
+        libgeos-dev libpq-dev python3-pip apt-transport-https ca-certificates gnupg && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy only the necessary files
+# Copy requirements
 COPY requirements.txt /home/vessel_detection/requirements.txt
 
-# Install Python Packages
-RUN pip install --no-cache-dir -r /home/vessel_detection/requirements.txt
+# Install Python Packages (use python3 -m pip to ensure the upgraded pip is used)
+RUN python3 -m pip install --no-cache-dir -U pip setuptools wheel && \
+    python3 -m pip install --no-cache-dir -U numpy==1.23.* cython && \
+    python3 -m pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cu113 torch==1.13.* torchvision==0.14.* && \
+    python3 -m pip install --no-cache-dir -r /home/vessel_detection/requirements.txt
 
 # Set Working Directory and Prepare App
 WORKDIR /home/vessel_detection/src
