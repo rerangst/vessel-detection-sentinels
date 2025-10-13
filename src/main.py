@@ -132,7 +132,7 @@ async def get_detections(info: SVDRequest, response: Response) -> SVDResponse:
             postprocess_model_dir,
             raw_path,
             scene_id,
-            img_array,
+            cat_path,
             base_path,
             output,
             info.window_size,
