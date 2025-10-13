@@ -144,10 +144,10 @@ async def get_detections(info: SVDRequest, response: Response) -> SVDResponse:
             device,
             catalog,
             info.avoid,
-            info.remove_clouds,
-            info.detector_batch_size,
-            info.postprocessor_batch_size,
-            debug_mode=info.debug_mode,
+            # info.remove_clouds,
+            # info.detector_batch_size,
+            # info.postprocessor_batch_size,
+            # debug_mode=info.debug_mode,
         )
 
         status = str(200)
