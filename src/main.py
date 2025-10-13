@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 
 CONFIG_PATH = os.path.join(
-    os.path.dirname(os.path.realpath(__file__)), "src", "config", "config.yml"
+    os.path.dirname(os.path.realpath(__file__)), "config", "config.yml"
 )
 
 HOST = "0.0.0.0"  # nosec B104
