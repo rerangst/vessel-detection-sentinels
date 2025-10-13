@@ -50,8 +50,8 @@ class GridIndex(object):
         self.each_cell(rect, f)
 
     def each_cell(self, rect, f):
-        for i in range(rect[0] // self.size, rect[2] // self.size + 1):
-            for j in range(rect[1] // self.size, rect[3] // self.size + 1):
+        for i in range(int(rect[0] // self.size), int(rect[2] // self.size) + 1):
+            for j in range(int(rect[1] // self.size), int(rect[3] // self.size) + 1):
                 f((i, j))
 
     def search(self, rect):
