@@ -757,6 +757,6 @@ def detect_vessels(
         pred = filter_out_locs(pred, loc_path=avoid)
         logger.info(f"Retained {len(pred)} of {num_unfiltered} detections.")
 
-    pred.to_csv(os.path.join(output_dir, "predictions.csv"), index=False)
+    pred.to_csv(os.path.join(output_dir, f"{filename}_predictions.csv"), index=False)
 
     return None
